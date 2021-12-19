@@ -18,11 +18,8 @@ def end():
     return endtime - startingTime
 
 
-# driver code: driver code is commented not to affect others' execution time when this package is used
+# driver code:
 # start()
-# rg.intGenerator(-100, 100, 20)
+# YOUR CODE COMES HERE
 # executionTimeInMilliseconds = end()
 # print("time execution: " + str(executionTimeInMilliseconds) + " MS")
-
-# result:
-# time execution: 0.99951171875 MS

@@ -3,28 +3,34 @@ from pathlib import Path
 import sys
 
 root_path = str(Path(__file__).parent.parent)
+assets_path = root_path + '\\Assets'
 bin_path = root_path + '\\bin'
 sys.path.append(bin_path)
 
 import monitor
+import fileReader
 
+
+
+
+# trie initialization
+TrieBridge.TrieInitialize()
+
+
+# feeding trie
+keywords = fileReader.getListOfWords(assets_path, "keywords-mini.txt")
+for pattern in keywords:
+    TrieBridge.Add(pattern)
+
+
+# reading text file
+text = fileReader.getText(assets_path, "book-mini.txt")
 
 
 monitor.start()
 
-TrieBridge.TrieInitialize()
-TrieBridge.Add('bananna')
-TrieBridge.Add('pan')
-TrieBridge.Add('and')
-TrieBridge.Add('nab')
-TrieBridge.Add('antenna')
-TrieBridge.Add('bandana')
-TrieBridge.Add('ananas')
-TrieBridge.Add('ananas')
-TrieBridge.Add('nana')
 
-
-text = "panamabananas"
+# seeking for patterns
 matchedKeywords = []
 for i in range(len(text)):
     string = text[i:]
@@ -32,7 +38,13 @@ for i in range(len(text)):
     if keyword != "":
         matchedKeywords.append(keyword)
 
+
 execTimeInMS = monitor.end()
 
-print("ExecTime: " + str(execTimeInMS))
+
+# printing out the result
 print(matchedKeywords)
+print("\nExecTime: " + str(execTimeInMS))
+
+
+# ExecTime: 579.3974609375

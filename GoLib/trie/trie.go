@@ -2,7 +2,6 @@ package main
 
 import (
 	"C"
-	"log"
 )
 
 type TrieNode struct {
@@ -94,8 +93,6 @@ func InitializeTrie() {
 	trie = Trie{
 		Dic: make(map[string]TrieNode),
 	}
-
-	log.Println("trie initialized!")
 }
 
 //export AddKeyword
