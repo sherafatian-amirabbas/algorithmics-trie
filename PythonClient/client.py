@@ -1,51 +1,38 @@
-import ctypes
-import pathlib
+import TrieBridge
+from pathlib import Path
+import sys
 
-rootpath  = pathlib.Path('.').resolve()
+root_path = str(Path(__file__).parent.parent)
+bin_path = root_path + '\\bin'
+sys.path.append(bin_path)
 
-# needed for debugging
-# rootpath = str(rootpath) + '/pythonclient'
-
-library = ctypes.cdll.LoadLibrary(f'{rootpath}/bin/trie.so')
-
-
-Initialize_Trie = library.InitializeTrie
-Add_Keyword = library.AddKeyword
-Match_Letter = library.MatchLetter
+import monitor
 
 
-def TrieInitialize():
-    Initialize_Trie()
 
-def Add(keyword):
-    Add_Keyword.argtypes = [ctypes.c_char_p]
-    Add_Keyword(keyword.encode('utf-8'))
+monitor.start()
 
-def Match(letter):
-    Match_Letter.argtypes = [ctypes.c_char_p]
-    Match_Letter.restype = ctypes.c_void_p
-    ptr = Match_Letter(letter.encode('utf-8'))
-    out = ctypes.string_at(ptr)
-    return out.decode('utf-8')
+TrieBridge.TrieInitialize()
+TrieBridge.Add('bananna')
+TrieBridge.Add('pan')
+TrieBridge.Add('and')
+TrieBridge.Add('nab')
+TrieBridge.Add('antenna')
+TrieBridge.Add('bandana')
+TrieBridge.Add('ananas')
+TrieBridge.Add('ananas')
+TrieBridge.Add('nana')
 
-
-TrieInitialize()
-Add('bananna')
-Add('pan')
-Add('and')
-Add('nab')
-Add('antenna')
-Add('bandana')
-Add('ananas')
-Add('ananas')
-Add('nana')
 
 text = "panamabananas"
 matchedKeywords = []
 for i in range(len(text)):
     string = text[i:]
-    keyword = Match(string)
+    keyword = TrieBridge.Match(string)
     if keyword != "":
         matchedKeywords.append(keyword)
 
+execTimeInMS = monitor.end()
+
+print("ExecTime: " + str(execTimeInMS))
 print(matchedKeywords)
