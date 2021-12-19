@@ -98,12 +98,17 @@ func InitializeTrie() {
 	log.Println("trie initialized!")
 }
 
-func AddKeyword(keyword string) {
-	trie.Add(keyword)
+//export AddKeyword
+func AddKeyword(keyword *C.char) {
+	keyword_go := C.GoString(keyword)
+	trie.Add(keyword_go)
 }
 
-func MatchLetter(letter string) string {
-	return trie.Match(letter)
+//export MatchLetter
+func MatchLetter(letter *C.char) *C.char {
+	letter_go := C.GoString(letter)
+	match_go := trie.Match(letter_go)
+	return C.CString(match_go)
 }
 
 func main() {
