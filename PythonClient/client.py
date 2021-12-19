@@ -1,7 +1,8 @@
-
 import ctypes
+import pathlib
 
-library = ctypes.cdll.LoadLibrary('./bin/trie.so')
+rootpath  = pathlib.Path('.').resolve()
+library = ctypes.cdll.LoadLibrary(f'{rootpath}/bin/trie.so')
 
 def TrieInitialize():
     Initialize_Trie = library.InitializeTrie
