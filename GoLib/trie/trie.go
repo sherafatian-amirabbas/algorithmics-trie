@@ -1,4 +1,9 @@
-package trie
+package main
+
+import (
+	"C"
+	"log"
+)
 
 type TrieNode struct {
 	Dic    map[string]TrieNode
@@ -84,10 +89,13 @@ func toTrieNode(subStr string) TrieNode {
 
 var trie Trie
 
+//export InitializeTrie
 func InitializeTrie() {
 	trie = Trie{
 		Dic: make(map[string]TrieNode),
 	}
+
+	log.Println("trie initialized!")
 }
 
 func AddKeyword(keyword string) {
@@ -96,4 +104,8 @@ func AddKeyword(keyword string) {
 
 func MatchLetter(letter string) string {
 	return trie.Match(letter)
+}
+
+func main() {
+
 }
