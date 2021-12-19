@@ -49,6 +49,7 @@ print("\nExecTime: " + str(execTimeInMS))
 
 # result for mini version
 # ExecTime: 212.020751953125
+# ExecTime: 175.001953125 => when C.cstring is ignored
 
 # result for full version
 # ExecTime: 375297.314453125
