@@ -51,4 +51,4 @@ print("\nExecTime: " + str(execTimeInMS))
 # ExecTime: 212.020751953125
 
 # result for full version
-# ExecTime: 688472.2861328125
+# ExecTime: 375297.314453125
