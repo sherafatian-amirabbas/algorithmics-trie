@@ -15,13 +15,13 @@ trie = Trie()
 
 
 # feeding trie
-keywords = fileReader.getListOfWords(assets_path, "keywords-mini.txt")
+keywords = fileReader.getListOfWords(assets_path, "keywords.txt")
 for pattern in keywords:
     trie.Add(pattern)
 
 
 # reading text file
-text = fileReader.getText(assets_path, "book-mini.txt")
+text = fileReader.getText(assets_path, "book.txt")
 
 
 monitor.start()
@@ -44,4 +44,8 @@ print(matchedKeywords)
 print("\nExecTime: " + str(execTimeInMS))
 
 
+# result for mini version
 # result: ExecTime: 61.998779296875
+
+# result for full version
+# ExecTime: 75685.92797851562

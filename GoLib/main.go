@@ -1,28 +1,31 @@
 package main
 
 import (
+	"C"
 	"fmt"
 
-	"github.com/algorithmics-trie/GoLib/trie"
+	pkg "github.com/algorithmics-trie/GoLib/trie"
 )
 
 func main() {
 
 	// driver code
 
-	trie.InitializeTrie()
+	trie := pkg.Trie{
+		Dic: make(map[byte]pkg.TrieNode),
+	}
 
-	trie.AddKeyword("this")
-	trie.AddKeyword("think")
-	trie.AddKeyword("thought")
-	trie.AddKeyword("narrow")
-	trie.AddKeyword("nudge")
-	trie.AddKeyword("pair")
+	trie.Add("this")
+	trie.Add("think")
+	trie.Add("thought")
+	trie.Add("narrow")
+	trie.Add("nudge")
+	trie.Add("pair")
 
-	fmt.Println("his: " + trie.MatchLetter("his"))
-	fmt.Println("thinks: " + trie.MatchLetter("thinks"))
-	fmt.Println("though: " + trie.MatchLetter("though"))
-	fmt.Println("pair: " + trie.MatchLetter("pair"))
+	fmt.Println("his: " + trie.Match("his"))
+	fmt.Println("thinks: " + trie.Match("thinks"))
+	fmt.Println("though: " + trie.Match("though"))
+	fmt.Println("pair: " + trie.Match("pair"))
 
 	// result:
 	// his:

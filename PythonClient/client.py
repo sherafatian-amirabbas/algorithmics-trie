@@ -18,13 +18,13 @@ TrieBridge.TrieInitialize()
 
 
 # feeding trie
-keywords = fileReader.getListOfWords(assets_path, "keywords-mini.txt")
+keywords = fileReader.getListOfWords(assets_path, "keywords.txt")
 for pattern in keywords:
     TrieBridge.Add(pattern)
 
 
 # reading text file
-text = fileReader.getText(assets_path, "book-mini.txt")
+text = fileReader.getText(assets_path, "book.txt")
 
 
 monitor.start()
@@ -47,4 +47,8 @@ print(matchedKeywords)
 print("\nExecTime: " + str(execTimeInMS))
 
 
-# ExecTime: 579.3974609375
+# result for mini version
+# ExecTime: 212.020751953125
+
+# result for full version
+# ExecTime: 688472.2861328125

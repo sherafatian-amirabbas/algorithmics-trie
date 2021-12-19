@@ -5,22 +5,21 @@ import (
 )
 
 type TrieNode struct {
-	Dic    map[string]TrieNode
+	Dic    map[byte]TrieNode
 	IsLeaf bool
 }
 
 type Trie struct {
-	Dic map[string]TrieNode
+	Dic map[byte]TrieNode
 }
 
 func (trie Trie) Add(keyword string) {
 
 	dic := trie.Dic
 
-	r := []rune(keyword)
-	for i := 0; i < len(r); i = i + 1 {
+	for i := 0; i < len(keyword); i = i + 1 {
 
-		char := string(r[i])
+		char := keyword[i]
 
 		node, isFound := dic[char]
 		if isFound {
@@ -38,11 +37,10 @@ func (trie Trie) Match(letter string) string {
 	pattern := ""
 
 	dic := trie.Dic
-	r := []rune(letter)
-	for i := 0; i < len(r); i = i + 1 {
+	for i := 0; i < len(letter); i = i + 1 {
 
-		char := string(r[i])
-		pattern += char
+		char := letter[i]
+		pattern += string(char)
 
 		node, isFound := dic[char]
 		if isFound {
@@ -67,14 +65,14 @@ func toTrieNode(subStr string) TrieNode {
 	if len(subStr) == 1 {
 		// a node as the leaf with an empty dictionary
 		return TrieNode{
-			Dic:    make(map[string]TrieNode),
+			Dic:    make(map[byte]TrieNode),
 			IsLeaf: true,
 		}
 	} else {
-		nextChar := string(subStr[1])
+		nextChar := subStr[1]
 		nextNode := toTrieNode(subStr[1:])
 
-		dic := make(map[string]TrieNode)
+		dic := make(map[byte]TrieNode)
 		dic[nextChar] = nextNode
 
 		return TrieNode{
@@ -91,7 +89,7 @@ var trie Trie
 //export InitializeTrie
 func InitializeTrie() {
 	trie = Trie{
-		Dic: make(map[string]TrieNode),
+		Dic: make(map[byte]TrieNode),
 	}
 }
 
@@ -109,5 +107,4 @@ func MatchLetter(letter *C.char) *C.char {
 }
 
 func main() {
-
 }
