@@ -1,8 +1,9 @@
 package main
 
-import (
-	"C"
-)
+/*
+#include <stdlib.h>
+*/
+import "C"
 
 type TrieNode struct {
 	Dic    map[byte]TrieNode
