@@ -1,7 +1,12 @@
 import ctypes
 from pathlib import Path
 
-root_path = str(Path(__file__).parent.parent)
+# root_path for jeyhun
+root_path = '..\\'                              
+
+# root_path for amir
+# root_path = str(Path(__file__).parent.parent)
+
 bin_path = root_path + '\\bin'
 
 GoLib = ctypes.cdll.LoadLibrary(f'{bin_path}/trie.so')
